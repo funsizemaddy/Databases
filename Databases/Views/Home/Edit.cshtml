@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add/Edit Bowler";
+}
+@model Databases.Models.Bowler
+
+<div>
+    <form method="post"  asp-controller="Home"asp-action="Edit">
+        <label asp-for="BowlerID">Bowler ID</label>
+        <input asp-for="BowlerID" />
+        <br />
+
+        <label asp-for="BowlerFirstName">Bowler First Name</label>
+        <input asp-for="BowlerFirstName" />
+        <br />
+
+        <label asp-for="BowlerLastName">Bowler Last Name</label>
+        <input asp-for="BowlerLastName" />
+        <br />
+
+        <label asp-for="BowlerMiddleInit">Bowler Middle Inital</label>
+        <input asp-for="BowlerMiddleInit" />
+        <br />
+
+        <label asp-for="BowlerAddress">Bowler Address</label>
+        <input asp-for="BowlerAddress" />
+        <br />
+
+        <label asp-for="BowlerCity">Bowler City</label>
+        <input asp-for="BowlerCity" />
+        <br />
+
+        <label asp-for="BowlerState">Bowler State</label>
+        <input asp-for="BowlerState" />
+        <br />
+
+
+        <label asp-for="BowlerZip">Bowler Zip</label>
+        <input asp-for="BowlerZip" />
+        <br />
+
+        <label asp-for="BowlerPhoneNumber">Bowler Phone</label>
+        <input asp-for="BowlerPhoneNumber" />
+        <br />
+
+        <label asp-for="TeamID">Team Name</label>
+        <select asp-for="TeamID">
+            <option value="Select a Team"></option>
+            @foreach (Team t in ViewBag.Teams)
+            {
+                <option value="@t.TeamID">@t.TeamName</option>
+            }
+        </select>
+
+
+        <button class="btn btn-primary"type="submit">Submit</button>
+
+
+
+        </form>
+</div>
