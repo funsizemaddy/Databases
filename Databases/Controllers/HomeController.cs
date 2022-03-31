@@ -20,14 +20,25 @@ namespace Databases.Controllers
             _repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int TeamId, string TeamName)
         {
 
-            var dataset = _repo.Bowlers.Include("Team").ToList();
+            //var dataset = _repo.Bowlers.Include("Team").ToList();
+            if(TeamId == 0)
+            {
+                ViewBag.teamname = "Bowlers";
+            }
+            else
+            {
+            ViewBag.teamname = _repo.Teams
+                .Single(x => x.TeamID == TeamId).TeamName.ToString();
+            }
 
-            // create new Team  with SQL that connects with the route of Default buttons
-
-
+            var dataset = _repo.Bowlers
+                .Include("Team")
+                .Where(t => t.TeamID == TeamId || TeamId == 0)
+                .OrderBy(t => t.BowlerLastName)
+                .ToList();
             return View(dataset);
         }
         [HttpGet]
@@ -39,7 +50,7 @@ namespace Databases.Controllers
 
             _repo.DeleteBowler(deleteapp);
 
-            return View("Delete");
+            return View("Delete", deleteapp);
         }
 
      
@@ -86,14 +97,7 @@ namespace Databases.Controllers
             return RedirectToAction("Index");
 
         }
-        public IActionResult TeamButtons (string TeamName)
-        {
-            var x = new Team
-            {
-                TeamName = _repo.Bowlers
-                .Where (t => t.TeamName)
-            }
-        }
+       
        
     }
 }

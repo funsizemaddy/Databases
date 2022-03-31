@@ -59,6 +59,9 @@ namespace Databases
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "blah",
+                    pattern: "{controller=Home}/{action=Index}/{TeamId?}/{TeamName?}");
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

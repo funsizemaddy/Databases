@@ -18,10 +18,10 @@ namespace Databases.Components
         {
             ViewBag.SelectedType = RouteData?.Values["TeamName"];
 
-            var teams = repo.Teams
-                .Select(x => x.TeamName)
-                .Distinct()
-                .OrderBy(x => x);
+            var teams = repo.Teams;
+                //.Select(x => x.TeamName)
+                //.Distinct()
+                //.OrderBy(x => x);
             return View(teams);
         }
     }
